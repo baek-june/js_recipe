@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>select text2</title>
+</head>
+<body>
+  <p class="paragraph">Hello, this is a Javascript programming book.</p>
+  <div id="balloon"></div>
+  <script>
+    // 말풍선 요소
+    const balloon = document.querySelector("#balloon");
+    // 대상 문자열 요소
+    const paragraph = document.querySelector(".paragraph");
+
+    // 선택 작업시 처리
+    paragraph.addEventListener('selectstart', () => {
+      // 클릭 해제시 처리
+      paragraph.addEventListener('mouseup', (event) => {
+        const selectionCharacters = window.getSelection().toString();
+        if(selectionCharacters.length > 0) {
+          balloon.innerHTML = selectionCharacters;
+          balloon.classList.add('on');
+          balloon.style.left = `${event.clientX - ballon.clientWidth / 2}px`;
+          balloon.style.top = `${event.clientY - ballon.clientHeight / 2}px`;
+        } else {
+          removePopup();
+        }
+      },
+      {
+        once: true 
+      }
+      );
+    });
+    balloon.addEventListener('click', removePopup);
+    function removePopup() {
+      balloon.classList.remove('on');
+    }
+  </script>
+</body>
+</html>

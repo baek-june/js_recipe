@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mouse_x_y</title>
+  <style>
+    .circle {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-color: blue;
+    }
+  </style>
+</head>
+<body>
+  <div class="circle"></div>
+</body>
+<script>
+  const circle = document.querySelector('.circle');
+  document.addEventListener('mousedown', () => {
+    document.addEventListener('mousemove', onMouseMove);
+  });
+  document.addEventListener('mouseup', () => {
+    document.removeEventListener('mousemove', onMouseMove);
+  });
+  
+
+  function onMouseMove(event) {
+    console.log(event.pageX, event.pageY);
+    circle.style.left = `${event.clientX - 50}px`;
+    circle.style.top = `${event.clientY - 50}px`;
+  }
+</script>
+</html>
